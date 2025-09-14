@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0b6256869169f48d78241891fe00aa8b
+guid: ad0afb1f903c34d86991a90b28715f9c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 962501488594333488
-    second: Copilot_20250914_151149_0
+      213: -5514188765475980169
+    second: Copilot_20250914_151652_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,7 +126,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Copilot_20250914_151149_0
+      name: Copilot_20250914_151652_0
       rect:
         serializedVersion: 2
         x: 0
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 03f237b110e7b5d00800000000000000
-      internalID: 962501488594333488
+      spriteID: 77cba51888aa973b0800000000000000
+      internalID: -5514188765475980169
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Copilot_20250914_151149_0: 962501488594333488
+      Copilot_20250914_151652_0: -5514188765475980169
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
