@@ -1,5 +1,9 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting.FullSerializer;
+
 
 public class Chicken : MonoBehaviour
 {
@@ -10,6 +14,8 @@ public class Chicken : MonoBehaviour
     [SerializeField] private Tilemap flowerMap;
     [SerializeField] private Tile flowerTile;
     [SerializeField] private Tilemap grassMap;
+    
+    private bool justDied = false;
     
     private void Awake()
     {
@@ -58,22 +64,51 @@ public class Chicken : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Flower"))
         {
-            chickenMovementScript.ResetPosition();
+            Debug.Log("hit flower");
+            Debug.Log("flower position: " + transform.position);
+            justDied = true;
             flowerMap.ClearAllTiles();
             flowerMap.RefreshAllTiles();
+            chickenMovementScript.ResetPosition();
         }
         // if collision is a cow
     }
-
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("justDied: " + justDied);
         if (other.gameObject.CompareTag("Grass"))
         {
-            Debug.Log("TOUCHED GRASS - STOP DRAWING FLOWERS");
+            Debug.Log("grass position: " + transform.position);
+            if (justDied)
+            {
+                Debug.Log("TOUCHED GRASS BUT JUST DIED - DO NOTHING");
+                justDied = false;
+            }
+            else
+            {
+                Debug.Log("TOUCHED GRASS - STOP DRAWING FLOWERS");
+                GrassFillScript.Instance.FillGrassFromFlowers(GetAllFlowerPositions());
+            }
         }
         else if (other.gameObject.CompareTag("Ground"))
         {
             Debug.Log("TOUCHED GROUND - START DRAWING FLOWERS");
         }
+    }
+
+    List<Vector3Int> GetAllFlowerPositions()
+    {
+        List<Vector3Int> flowerPositions = new List<Vector3Int>();
+
+        foreach (var pos in flowerMap.cellBounds.allPositionsWithin)
+        {
+            if (flowerMap.HasTile(pos))
+            {
+                flowerPositions.Add(pos);
+            }
+        }
+        
+        return flowerPositions;
     }
 }
