@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text percentageText;
     [SerializeField] private Text winText;
     
-    
     [SerializeField] private float timeToCheck = 0.35f;
     private float _moveCountdown;
     private bool _won;
@@ -31,6 +30,7 @@ public class GameManager : MonoBehaviour
                 if (_won)
                 {
                     winText.gameObject.SetActive(true);
+                    Chicken.Instance.transform.gameObject.SetActive(false);
                 }
             }   
         }

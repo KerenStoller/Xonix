@@ -6,7 +6,10 @@ public class Movement : MonoBehaviour
     [SerializeField] private Vector3Int startingPosition;
     [SerializeField] private float timeToMove = 0.35f;
     [SerializeField] private bool isChicken;
+    [SerializeField] private Sprite[] sprites;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     
+    private int _currentSpriteIndex = 0;
     public Vector3? CurrentDirection;
     public bool hasDirection;
     private float _moveCountdown;
@@ -42,7 +45,20 @@ public class Movement : MonoBehaviour
             
             Vector3Int oldCellPosition = grid.WorldToCell(transform.position);
             transform.position = grid.GetCellCenterWorld(newPosition);
-            
+            spriteRenderer.sprite = sprites[++_currentSpriteIndex % sprites.Length];
+            if (CurrentDirection!.Value == Vector3Int.left)
+            {
+                spriteRenderer.flipX = true;
+            }
+            else if (CurrentDirection!.Value == Vector3Int.right)
+            {
+                spriteRenderer.flipX = false;
+            }
+            else
+            {
+                spriteRenderer.sprite = sprites[0];
+            }
+                
             if (isChicken)
             {
                 Chicken.Instance.DrawFlower(oldCellPosition);
@@ -62,5 +78,6 @@ public class Movement : MonoBehaviour
     {
         transform.position = grid.GetCellCenterWorld(startingPosition);
         transform.rotation = Quaternion.identity;
+        spriteRenderer.flipX = false;
     }
 }
