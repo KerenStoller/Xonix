@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting.FullSerializer;
-
+using System.Collections;
 
 public class Chicken : MonoBehaviour
 {
     public static Chicken Instance {get; private set;}
+
+    [SerializeField] private Collider2D chickenCollider;
+    [SerializeField] private SpriteRenderer chickenSpriteRenderer;
     
     [SerializeField] private Grid grid;
     [SerializeField] private Movement chickenMovementScript;
@@ -59,35 +60,73 @@ public class Chicken : MonoBehaviour
             flowerMap.SetTile(cellPosition, flowerTile);
         }
     }
-    
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void HideChicken()
     {
-        if (collision.gameObject.CompareTag("Flower"))
+        chickenCollider.enabled = false;
+        chickenSpriteRenderer.enabled = false;
+    }
+
+    private void ShowChicken()
+    {
+        chickenCollider.enabled = true;
+        chickenSpriteRenderer.enabled = true;
+    }
+    
+    private IEnumerator BlinkFlowersAndRemove(float blinkInterval)
+    {
+        HideChicken();
+        List<Vector3Int> flowerPositions = GetAllFlowerPositions();
+
+        // Hide all flowers
+        foreach (var pos in flowerPositions)
         {
-            Debug.Log("hit flower");
-            Debug.Log("flower position: " + transform.position);
-            justDied = true;
-            flowerMap.ClearAllTiles();
-            flowerMap.RefreshAllTiles();
-            chickenMovementScript.ResetPosition();
+            flowerMap.SetTile(pos, null);
         }
-        // if collision is a cow
+        yield return new WaitForSeconds(blinkInterval);
+
+        // Show all flowers
+        foreach (var pos in flowerPositions)
+        {
+            flowerMap.SetTile(pos, flowerTile);
+        }
+
+        yield return new WaitForSeconds(blinkInterval);
+        
+        // Hide all flowers again
+        foreach (var pos in flowerPositions)
+        {
+            flowerMap.SetTile(pos, null);
+        }
+        yield return new WaitForSeconds(blinkInterval);
+        
+        chickenMovementScript.ResetPosition();
+        ShowChicken();
     }
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("justDied: " + justDied);
+        if (other.gameObject.CompareTag("Flower"))
+        {
+            Debug.Log("hit flower");
+            Debug.Log("flower position: " + transform.position);
+            justDied = true;
+            chickenMovementScript.StopMovement();
+            StartCoroutine(BlinkFlowersAndRemove(0.2f));
+        }
         if (other.gameObject.CompareTag("Grass"))
         {
+            Debug.Log("TOUCHED GRASS");
+            Debug.Log("justDied: " + justDied);
             Debug.Log("grass position: " + transform.position);
             if (justDied)
             {
-                Debug.Log("TOUCHED GRASS BUT JUST DIED - DO NOTHING");
+                Debug.Log("touches grass BUT JUST DIED - DO NOTHING");
                 justDied = false;
             }
             else
             {
-                Debug.Log("TOUCHED GRASS - STOP DRAWING FLOWERS");
+                Debug.Log("touched grass - STOP DRAWING FLOWERS");
                 GrassFillScript.Instance.FillGrassFromFlowers(GetAllFlowerPositions());
             }
         }

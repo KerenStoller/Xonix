@@ -36,7 +36,7 @@ public class Movement : MonoBehaviour
             
             if(Utils.OutOfBounds(newPosition))
             {
-                ResetMovement();
+                StopMovement();
                 return;
             }
             
@@ -52,7 +52,7 @@ public class Movement : MonoBehaviour
     
    
 
-    private void ResetMovement()
+    public void StopMovement()
     {
         hasDirection = false;
         _moveCountdown = 0;
@@ -62,6 +62,5 @@ public class Movement : MonoBehaviour
     {
         transform.position = grid.GetCellCenterWorld(startingPosition);
         transform.rotation = Quaternion.identity;
-        ResetMovement();
     }
 }
