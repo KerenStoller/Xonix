@@ -1302,7 +1302,7 @@ TilemapCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -2999,6 +2999,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: b947e741bddb5412e99bd33ab5597069, type: 2}
     - target: {fileID: 6783907754049529005, guid: 81efc0c3dc1e743caa1c69554efb36a3, type: 3}
+      propertyPath: chickenCollider
+      value: 
+      objectReference: {fileID: 1967181641}
+    - target: {fileID: 6783907754049529005, guid: 81efc0c3dc1e743caa1c69554efb36a3, type: 3}
       propertyPath: chickenRigidBody2D
       value: 
       objectReference: {fileID: 1967181640}
@@ -3006,6 +3010,10 @@ PrefabInstance:
       propertyPath: chickenMovementScript
       value: 
       objectReference: {fileID: 1967181643}
+    - target: {fileID: 6783907754049529005, guid: 81efc0c3dc1e743caa1c69554efb36a3, type: 3}
+      propertyPath: chickenSpriteRenderer
+      value: 
+      objectReference: {fileID: 1967181645}
     - target: {fileID: 8248761584732728752, guid: 81efc0c3dc1e743caa1c69554efb36a3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.5
@@ -3146,6 +3154,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f7455a02c3364ec981cafb673359a12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!212 &1967181645 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3246286220469615203, guid: 81efc0c3dc1e743caa1c69554efb36a3, type: 3}
+  m_PrefabInstance: {fileID: 1683157928}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
