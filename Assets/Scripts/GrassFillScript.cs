@@ -12,11 +12,11 @@ public class GrassFillScript : MonoBehaviour
     [SerializeField] private Tilemap groundTilemap;
     [SerializeField] private List<Vector3> cowsWorldPositions;
     
-    HashSet<Vector3Int> cowPositions = new HashSet<Vector3Int>();
+    HashSet<Vector3Int> _cowPositions = new HashSet<Vector3Int>();
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (Instance && Instance != this)
         {
             Destroy(gameObject);
             return;
@@ -32,11 +32,11 @@ public class GrassFillScript : MonoBehaviour
         foreach (var worldPos in cowsWorldPositions)
         {
             Vector3Int cellPos = grassTilemap.WorldToCell(worldPos);
-            cowPositions.Add(cellPos);
+            _cowPositions.Add(cellPos);
         }
         
-        print(cowPositions.Count);
-        print(cowPositions);
+        print(_cowPositions.Count);
+        print(_cowPositions);
     }
     
     public void FillGrassFromFlowers(List<Vector3Int> flowerCellPositions)
@@ -88,7 +88,7 @@ public class GrassFillScript : MonoBehaviour
         {
             if (!Utils.OutOfBounds(adjacentCell))
             {
-                if (cowPositions.Contains(adjacentCell))
+                if (_cowPositions.Contains(adjacentCell))
                 {
                     return true;
                 }

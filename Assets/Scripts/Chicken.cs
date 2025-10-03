@@ -16,11 +16,11 @@ public class Chicken : MonoBehaviour
     [SerializeField] private Tile flowerTile;
     [SerializeField] private Tilemap grassMap;
     
-    private bool justDied = false;
+    private bool _justDied;
     
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (Instance && Instance != this)
         {
             Destroy(gameObject);
             return;
@@ -110,19 +110,19 @@ public class Chicken : MonoBehaviour
         {
             Debug.Log("hit flower");
             Debug.Log("flower position: " + transform.position);
-            justDied = true;
+            _justDied = true;
             chickenMovementScript.StopMovement();
             StartCoroutine(BlinkFlowersAndRemove(0.2f));
         }
         if (other.gameObject.CompareTag("Grass"))
         {
             Debug.Log("TOUCHED GRASS");
-            Debug.Log("justDied: " + justDied);
+            Debug.Log("_justDied: " + _justDied);
             Debug.Log("grass position: " + transform.position);
-            if (justDied)
+            if (_justDied)
             {
                 Debug.Log("touches grass BUT JUST DIED - DO NOTHING");
-                justDied = false;
+                _justDied = false;
             }
             else
             {

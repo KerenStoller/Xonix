@@ -8,8 +8,8 @@ public class Movement : MonoBehaviour
     [SerializeField] private bool isChicken;
     [SerializeField] private Sprite[] sprites;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    
-    private int _currentSpriteIndex = 0;
+
+    private int _currentSpriteIndex;
     public Vector3? CurrentDirection;
     public bool hasDirection;
     private float _moveCountdown;
