@@ -8,7 +8,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Tilemap grassTilemap;
     [SerializeField] private Text percentageText;
     [SerializeField] private Text winText;
-    
+    [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private Chicken chicken;   
+    private bool _isGameOver = false;
+
+
+
     [SerializeField] private float timeToCheck = 0.35f;
     private float _moveCountdown;
     private bool _won;
@@ -53,8 +58,32 @@ public class GameManager : MonoBehaviour
         }
 
         float coverage = (float)grassCount / totalCount;
-        percentageText.text = $"{coverage*100:0}%";
+        percentageText.text = $"{coverage * 100:0}%";
 
         _won = coverage > threshold;
     }
+    
+    private void OnEnable()
+    {
+        Chicken.OnPlayerDied += TriggerGameOver;
+    }
+
+    private void OnDisable()
+    {
+        Chicken.OnPlayerDied -= TriggerGameOver;
+    }
+
+    private void TriggerGameOver()
+    {
+        gameOverPanel.SetActive(true);
+
+        if (chicken != null)
+        {
+            chicken.gameObject.SetActive(false);
+        }
+
+        Time.timeScale = 0f;
+    }
+
+
 }

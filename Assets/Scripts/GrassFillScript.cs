@@ -51,6 +51,7 @@ public class GrassFillScript : MonoBehaviour
 
     private void FillGrassFromFlower(Vector3Int flowerCellPosition)
     {
+        UpdateCowPositions();
         List<Vector3Int> potentialGrass = new List<Vector3Int>();
         Vector3Int[] neighbors = { Vector3Int.up, Vector3Int.down, Vector3Int.left, Vector3Int.right };
         for (int i = 0; i < neighbors.Length; i++)
@@ -115,4 +116,16 @@ public class GrassFillScript : MonoBehaviour
             grassTilemap.SetTile(cell, grassTile);
         }
     }
+
+    void UpdateCowPositions() 
+{
+    _cowPositions.Clear();
+    var cows = GameObject.FindGameObjectsWithTag("Cow");
+    foreach (var cow in cows) 
+    {
+        Vector3Int cellPos = grassTilemap.WorldToCell(cow.transform.position);
+        _cowPositions.Add(cellPos);
+    }
+}
+
 }
