@@ -8,7 +8,7 @@ using System;
 public class Chicken : MonoBehaviour
 {
     public static Chicken Instance { get; private set; }
-    
+
     [SerializeField] private Collider2D chickenCollider;
     [SerializeField] private SpriteRenderer chickenSpriteRenderer;
     [SerializeField] private Grid grid;
@@ -16,8 +16,6 @@ public class Chicken : MonoBehaviour
     [SerializeField] private Tilemap flowerMap;
     [SerializeField] private Tile flowerTile;
     [SerializeField] private Tilemap grassMap;
-    [SerializeField] private Image[] heartImages;
-    
     public int maxHealth = 3;
     private int currentHealth;
     private bool _justDied;
@@ -32,12 +30,13 @@ public class Chicken : MonoBehaviour
             return;
         }
         Instance = this;
-        currentHealth = maxHealth;
     }
 
     private void Start()
     {
-        UpdateHealthUI();
+        currentHealth = maxHealth;
+        Debug.Log("Started game with 3 lives");
+        //UpdateHealthUI();
     }
 
     private void Update()
@@ -119,8 +118,9 @@ public class Chicken : MonoBehaviour
         {
             _justDied = true;
             currentHealth--;
-            UpdateHealthUI();
-            
+            Debug.Log($"lost a life cuz touched a cow/flower now have { currentHealth}");
+            //UpdateHealthUI();
+
             if (currentHealth <= 0)
             {
                 OnPlayerDied?.Invoke();
@@ -128,6 +128,7 @@ public class Chicken : MonoBehaviour
 
             chickenMovementScript.StopMovement();
             StartCoroutine(BlinkFlowersAndRemove(0.2f));
+            _justDied = false;
             return;
         }
 
@@ -157,20 +158,36 @@ public class Chicken : MonoBehaviour
         return flowerPositions;
     }
 
-    public void DieToCow()
+    public void DieToCow() 
     {
-        currentHealth = 0;
-        UpdateHealthUI();
-        OnPlayerDied?.Invoke();
+        if (_justDied) return; 
+        _justDied = true;
+        currentHealth--;
+        Debug.Log($"lost a life cuz cow touched me or my path now have: {currentHealth}");
+        //UpdateHealthUI();
+        if (currentHealth <= 0)
+        {
+            OnPlayerDied?.Invoke();
+        }
         chickenMovementScript.StopMovement();
         StartCoroutine(BlinkFlowersAndRemove(0.2f));
     }
 
-    private void UpdateHealthUI()
+    /*private void UpdateHealthUI()
     {
         for (int i = 0; i < heartImages.Length; i++)
         {
             heartImages[i].gameObject.SetActive(i < currentHealth);
         }
+    }
+*/
+    public void ResetState()
+    {
+        currentHealth = maxHealth;
+        _justDied = false;
+        //UpdateHealthUI();
+        chickenMovementScript.ResetPosition();
+        chickenCollider.enabled = true;
+        chickenSpriteRenderer.enabled = true;
     }
 }

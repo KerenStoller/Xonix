@@ -5,7 +5,7 @@ public class CowController : MonoBehaviour
 {
     [SerializeField] private Grid grid;
     [SerializeField] private Tilemap groundTilemap;
-    [SerializeField] private Tilemap grassTilemap; // Added this field
+    [SerializeField] private Tilemap grassTilemap; 
     [SerializeField] private Tilemap flowerTilemap;
     [SerializeField] private float moveInterval = 0.35f;
     private float moveCountdown;
@@ -89,11 +89,11 @@ void MoveRandom()
     if (other.gameObject.CompareTag("Flower"))
     {
         Debug.Log("Cow hit flower!");
-        // Find chicken and kill it (direct reference or via GameManager)
-        Chicken chicken = FindAnyObjectByType<Chicken>(); // (or get reference some other way)
+        // Find chicken and kill it 
+        Chicken chicken = FindAnyObjectByType<Chicken>(); 
         if (chicken != null)
         {
-            chicken.DieToCow(); // call the same public death/reset method
+            chicken.DieToCow(); 
         }
     }
 }
