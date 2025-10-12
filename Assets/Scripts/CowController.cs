@@ -22,55 +22,55 @@ public class CowController : MonoBehaviour
         }
     }
 
-void Awake()
-{
-    spriteRenderer = GetComponent<SpriteRenderer>();
-}
-
-void MoveRandom()
-{
-    Vector3Int[] directions = new Vector3Int[]
+    void Awake()
     {
-        Vector3Int.up, Vector3Int.down, Vector3Int.left, Vector3Int.right
-    };
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
-    directions = ShuffleDirections(directions);
-
-    foreach (var dir in directions)
+    void MoveRandom()
     {
-        Vector3Int currentCell = grid.WorldToCell(transform.position);
-        Vector3Int nextCell = currentCell + dir;
-
-        if (!Utils.OutOfBounds(nextCell)
-            && groundTilemap.HasTile(nextCell)
-            && !grassTilemap.HasTile(nextCell))
+        Vector3Int[] directions = new Vector3Int[]
         {
-            // Flip cow sprite if moving left/right
-            if (dir == Vector3Int.left)
-                spriteRenderer.flipX = true;
-            else if (dir == Vector3Int.right)
-                spriteRenderer.flipX = false;
+            Vector3Int.up, Vector3Int.down, Vector3Int.left, Vector3Int.right
+        };
 
-            transform.position = grid.GetCellCenterWorld(nextCell);
-            break;
+        directions = ShuffleDirections(directions);
+
+        foreach (var dir in directions)
+        {
+            Vector3Int currentCell = grid.WorldToCell(transform.position);
+            Vector3Int nextCell = currentCell + dir;
+
+            if (!Utils.OutOfBounds(nextCell)
+                && groundTilemap.HasTile(nextCell)
+                && !grassTilemap.HasTile(nextCell))
+            {
+                // Flip cow sprite if moving left/right
+                if (dir == Vector3Int.left)
+                    spriteRenderer.flipX = true;
+                else if (dir == Vector3Int.right)
+                    spriteRenderer.flipX = false;
+
+                transform.position = grid.GetCellCenterWorld(nextCell);
+                break;
+            }
+        }
+
+        // Check for cow-chicken collision
+        Vector3Int cowCell = grid.WorldToCell(transform.position);
+        Vector3Int chickenCell = grid.WorldToCell(Chicken.Instance.transform.position);
+
+        if (cowCell == chickenCell)
+        {
+            Chicken.Instance.DieToCow();
+        }
+
+        // Kill chicken if cow steps onto flower
+        if (flowerTilemap.HasTile(cowCell))
+        {
+            Chicken.Instance.DieToCow();
         }
     }
-
-    // Check for cow-chicken collision
-    Vector3Int cowCell = grid.WorldToCell(transform.position);
-    Vector3Int chickenCell = grid.WorldToCell(Chicken.Instance.transform.position);
-
-    if (cowCell == chickenCell)
-    {
-        Chicken.Instance.DieToCow();
-    }
-
-    // Kill chicken if cow steps onto flower
-    if (flowerTilemap.HasTile(cowCell))
-    {
-        Chicken.Instance.DieToCow();
-    }
-}
 
     Vector3Int[] ShuffleDirections(Vector3Int[] dirs)
     {
@@ -85,17 +85,17 @@ void MoveRandom()
     }
 
     private void OnTriggerEnter2D(Collider2D other)
-{
-    if (other.gameObject.CompareTag("Flower"))
     {
-        Debug.Log("Cow hit flower!");
-        // Find chicken and kill it 
-        Chicken chicken = FindAnyObjectByType<Chicken>(); 
-        if (chicken != null)
+        if (other.gameObject.CompareTag("Flower"))
         {
-            chicken.DieToCow(); 
+            Debug.Log("Cow hit flower!");
+            // Find chicken and kill it 
+            Chicken chicken = FindAnyObjectByType<Chicken>(); 
+            if (chicken != null)
+            {
+                chicken.DieToCow(); 
+            }
         }
     }
-}
 
 }

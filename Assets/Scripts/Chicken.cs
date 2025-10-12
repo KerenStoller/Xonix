@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 using System.Collections;
-using UnityEngine.UI;
+//using UnityEngine.UI;
 using System;
 
 public class Chicken : MonoBehaviour
@@ -16,8 +16,8 @@ public class Chicken : MonoBehaviour
     [SerializeField] private Tilemap flowerMap;
     [SerializeField] private Tile flowerTile;
     [SerializeField] private Tilemap grassMap;
-    public int maxHealth = 3;
-    private int currentHealth;
+    //public int maxHealth = 3;
+    //private int currentHealth;
     private bool _justDied;
 
     public static event Action OnPlayerDied;
@@ -34,7 +34,7 @@ public class Chicken : MonoBehaviour
 
     private void Start()
     {
-        currentHealth = maxHealth;
+        //currentHealth = maxHealth;
         Debug.Log("Started game with 3 lives");
         //UpdateHealthUI();
     }
@@ -117,14 +117,15 @@ public class Chicken : MonoBehaviour
         if (other.gameObject.CompareTag("Cow") || other.gameObject.CompareTag("Flower"))
         {
             _justDied = true;
-            currentHealth--;
-            Debug.Log($"lost a life cuz touched a cow/flower now have { currentHealth}");
+            //currentHealth--;
+            //Debug.Log($"lost a life cuz touched a cow/flower now have { currentHealth}");
             //UpdateHealthUI();
 
+            /*
             if (currentHealth <= 0)
             {
                 OnPlayerDied?.Invoke();
-            }
+            }*/
 
             chickenMovementScript.StopMovement();
             StartCoroutine(BlinkFlowersAndRemove(0.2f));
@@ -162,13 +163,15 @@ public class Chicken : MonoBehaviour
     {
         if (_justDied) return; 
         _justDied = true;
-        currentHealth--;
-        Debug.Log($"lost a life cuz cow touched me or my path now have: {currentHealth}");
+        //currentHealth--;
+        //Debug.Log($"lost a life cuz cow touched me or my path now have: {currentHealth}");
         //UpdateHealthUI();
-        if (currentHealth <= 0)
-        {
-            OnPlayerDied?.Invoke();
-        }
+        /*
+         if (currentHealth <= 0)
+           {
+               OnPlayerDied?.Invoke();
+           }
+         */
         chickenMovementScript.StopMovement();
         StartCoroutine(BlinkFlowersAndRemove(0.2f));
     }
@@ -183,7 +186,7 @@ public class Chicken : MonoBehaviour
 */
     public void ResetState()
     {
-        currentHealth = maxHealth;
+        //currentHealth = maxHealth;
         _justDied = false;
         //UpdateHealthUI();
         chickenMovementScript.ResetPosition();

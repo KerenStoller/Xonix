@@ -118,14 +118,14 @@ public class GrassFillScript : MonoBehaviour
     }
 
     void UpdateCowPositions() 
-{
-    _cowPositions.Clear();
-    var cows = GameObject.FindGameObjectsWithTag("Cow");
-    foreach (var cow in cows) 
     {
-        Vector3Int cellPos = grassTilemap.WorldToCell(cow.transform.position);
-        _cowPositions.Add(cellPos);
+        _cowPositions.Clear();
+        var cows = GameObject.FindGameObjectsWithTag("Cow");
+        foreach (var cow in cows) 
+        {
+            Vector3Int cellPos = grassTilemap.WorldToCell(cow.transform.position);
+            _cowPositions.Add(cellPos);
+        }
     }
-}
 
 }

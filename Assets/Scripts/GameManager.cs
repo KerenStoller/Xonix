@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
         {
             float coverage = (float)grassCount / totalCount;
             percentageText.text = $"{coverage * 100:0}%";
-            _won = coverage > threshold;
+            _won = coverage >= threshold;
         }
         else
         {
