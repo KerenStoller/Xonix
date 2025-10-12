@@ -159,7 +159,7 @@ public class Chicken : MonoBehaviour
         return flowerPositions;
     }
 
-    public void DieToCow() 
+    public void DieFromCow() 
     {
         if (_justDied) return; 
         _justDied = true;

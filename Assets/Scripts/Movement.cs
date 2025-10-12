@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Movement : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class Movement : MonoBehaviour
     [SerializeField] private bool isChicken;
     [SerializeField] private Sprite[] sprites;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Tilemap grassGrid;
+    
 
     private int _currentSpriteIndex;
     public Vector3? CurrentDirection;
@@ -18,8 +21,7 @@ public class Movement : MonoBehaviour
     {
         transform.position = grid.GetCellCenterWorld(startingPosition);
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         _moveCountdown += Time.deltaTime;
@@ -31,11 +33,20 @@ public class Movement : MonoBehaviour
         }
     }
 
-    void Move()
+    public void Move()
     {
         if (hasDirection)
         {
             Vector3Int newPosition = Vector3Int.FloorToInt(transform.position + CurrentDirection!.Value);
+
+            if (!isChicken)
+            {
+                if (grassGrid.HasTile(newPosition))
+                {
+                    StopMovement();
+                    return;
+                }
+            }
             
             if(Utils.OutOfBounds(newPosition))
             {
@@ -65,8 +76,6 @@ public class Movement : MonoBehaviour
             }
         }
     }
-    
-   
 
     public void StopMovement()
     {
