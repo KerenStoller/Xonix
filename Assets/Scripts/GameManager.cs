@@ -6,14 +6,14 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Grid grid;
-    [SerializeField] private Tilemap grassTilemap;
-    [SerializeField] private Tilemap groundTilemap;
     [SerializeField] private Text percentageText;
     [SerializeField] private Text winText;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private Chicken chicken;
     [SerializeField] private GameObject PlayButton;
-    [SerializeField] private Tilemap flowerMap;
+    private Tilemap _grassTilemap;
+    private Tilemap _groundTilemap;
+    private Tilemap _flowersTilemap;
 
     private Vector3[] cowStartPositions;
 
@@ -26,22 +26,13 @@ public class GameManager : MonoBehaviour
 
     private Dictionary<Vector3Int, TileBase> _initialGrassTiles = new Dictionary<Vector3Int, TileBase>();
     private Dictionary<Vector3Int, TileBase> _initialGroundTiles = new Dictionary<Vector3Int, TileBase>();
-    private bool _cachedTiles;
 
     private void Awake()
     {
-        if (!_cachedTiles)
-        {
-            CacheInitialTilemaps();
-            _cachedTiles = true;
-        }
-        var cows = GameObject.FindGameObjectsWithTag("Cow");
-        cowStartPositions = new Vector3[cows.Length];
-        for (int i = 0; i < cows.Length; i++)
-        {
-            cowStartPositions[i] = cows[i].transform.position;
-        }
-
+        _grassTilemap = grid.transform.Find("Grass").GetComponent<Tilemap>();
+        _groundTilemap = grid.transform.Find("Ground").GetComponent<Tilemap>();
+        _flowersTilemap = grid.transform.Find("Flowers").GetComponent<Tilemap>();
+        CacheInitialTilemaps();
     }
 
     private void CacheInitialTilemaps()
@@ -49,16 +40,16 @@ public class GameManager : MonoBehaviour
         _initialGrassTiles.Clear();
         _initialGroundTiles.Clear();
 
-        foreach (var pos in grassTilemap.cellBounds.allPositionsWithin)
+        foreach (var pos in _grassTilemap.cellBounds.allPositionsWithin)
         {
-            if (grassTilemap.HasTile(pos))
-                _initialGrassTiles[pos] = grassTilemap.GetTile(pos);
+            if (_grassTilemap.HasTile(pos))
+                _initialGrassTiles[pos] = _grassTilemap.GetTile(pos);
         }
 
-        foreach (var pos in groundTilemap.cellBounds.allPositionsWithin)
+        foreach (var pos in _groundTilemap.cellBounds.allPositionsWithin)
         {
-            if (groundTilemap.HasTile(pos))
-                _initialGroundTiles[pos] = groundTilemap.GetTile(pos);
+            if (_groundTilemap.HasTile(pos))
+                _initialGroundTiles[pos] = _groundTilemap.GetTile(pos);
         }
     }
 
@@ -91,12 +82,12 @@ public class GameManager : MonoBehaviour
         float threshold = 0.75f;
         int grassCount = 0;
         int totalCount = 0;
-        BoundsInt bounds = groundTilemap.cellBounds;
+        BoundsInt bounds = _groundTilemap.cellBounds;
 
         foreach (Vector3Int pos in bounds.allPositionsWithin)
         {
             totalCount++;
-            if (grassTilemap.HasTile(pos))
+            if (_grassTilemap.HasTile(pos))
                 grassCount++;
         }
 
@@ -166,14 +157,14 @@ public class GameManager : MonoBehaviour
 
     private void RestoreTilemaps()
     {
-        grassTilemap.ClearAllTiles();
-        groundTilemap.ClearAllTiles();
-        flowerMap.ClearAllTiles();
+        _grassTilemap.ClearAllTiles();
+        _groundTilemap.ClearAllTiles();
+        _flowersTilemap.ClearAllTiles();
 
-        foreach (var kvp in _initialGroundTiles)
-            groundTilemap.SetTile(kvp.Key, kvp.Value);
+        foreach (var tile in _initialGroundTiles)
+            _groundTilemap.SetTile(tile.Key, tile.Value);
 
-        foreach (var kvp in _initialGrassTiles)
-            grassTilemap.SetTile(kvp.Key, kvp.Value);
+        foreach (var tile in _initialGrassTiles)
+            _grassTilemap.SetTile(tile.Key, tile.Value);
     }
 }

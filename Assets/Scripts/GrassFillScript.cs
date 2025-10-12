@@ -10,9 +10,7 @@ public class GrassFillScript : MonoBehaviour
     [SerializeField] private Tile grassTile;
     [SerializeField] private Tilemap flowerTilemap;
     [SerializeField] private Tilemap groundTilemap;
-    [SerializeField] private List<Vector3> cowsWorldPositions;
-    
-    HashSet<Vector3Int> _cowPositions = new HashSet<Vector3Int>();
+    private HashSet<Vector3Int> _cowsPositions = new HashSet<Vector3Int>();
 
     private void Awake()
     {
@@ -28,19 +26,11 @@ public class GrassFillScript : MonoBehaviour
     private void Start()
     {
         Utils.InitializeBounds(grassTilemap);
-        
-        foreach (var worldPos in cowsWorldPositions)
-        {
-            Vector3Int cellPos = grassTilemap.WorldToCell(worldPos);
-            _cowPositions.Add(cellPos);
-        }
-        
-        print(_cowPositions.Count);
-        print(_cowPositions);
     }
     
     public void FillGrassFromFlowers(List<Vector3Int> flowerCellPositions)
     {
+        UpdateCowPositions();
         flowerTilemap.ClearAllTiles();
         ColorListToGrass(flowerCellPositions);
         foreach (Vector3Int flowerCellPosition in flowerCellPositions)
@@ -51,7 +41,6 @@ public class GrassFillScript : MonoBehaviour
 
     private void FillGrassFromFlower(Vector3Int flowerCellPosition)
     {
-        UpdateCowPositions();
         List<Vector3Int> potentialGrass = new List<Vector3Int>();
         Vector3Int[] neighbors = { Vector3Int.up, Vector3Int.down, Vector3Int.left, Vector3Int.right };
         for (int i = 0; i < neighbors.Length; i++)
@@ -89,7 +78,7 @@ public class GrassFillScript : MonoBehaviour
         {
             if (!Utils.OutOfBounds(adjacentCell))
             {
-                if (_cowPositions.Contains(adjacentCell))
+                if (_cowsPositions.Contains(adjacentCell))
                 {
                     return true;
                 }
@@ -117,15 +106,12 @@ public class GrassFillScript : MonoBehaviour
         }
     }
 
-    void UpdateCowPositions() 
+    private void UpdateCowPositions() 
     {
-        _cowPositions.Clear();
-        var cows = GameObject.FindGameObjectsWithTag("Cow");
-        foreach (var cow in cows) 
+        _cowsPositions.Clear();
+        foreach(var cow in CowManager.Instance.cows) 
         {
-            Vector3Int cellPos = grassTilemap.WorldToCell(cow.transform.position);
-            _cowPositions.Add(cellPos);
+            _cowsPositions.Add(grassTilemap.WorldToCell(cow.transform.position));
         }
     }
-
 }

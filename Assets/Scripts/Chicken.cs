@@ -13,9 +13,9 @@ public class Chicken : MonoBehaviour
     [SerializeField] private SpriteRenderer chickenSpriteRenderer;
     [SerializeField] private Grid grid;
     [SerializeField] private Movement chickenMovementScript;
-    [SerializeField] private Tilemap flowerMap;
     [SerializeField] private Tile flowerTile;
-    [SerializeField] private Tilemap grassMap;
+    private Tilemap _grassTilemap;
+    private Tilemap _flowersTilemap;
     //public int maxHealth = 3;
     //private int currentHealth;
     private bool _justDied;
@@ -30,6 +30,9 @@ public class Chicken : MonoBehaviour
             return;
         }
         Instance = this;
+        
+        _grassTilemap = grid.transform.Find("Grass").GetComponent<Tilemap>();
+        _flowersTilemap = grid.transform.Find("Flowers").GetComponent<Tilemap>();
     }
 
     private void Start()
@@ -65,9 +68,9 @@ public class Chicken : MonoBehaviour
 
     public void DrawFlower(Vector3Int cellPosition)
     {
-        if (!grassMap.HasTile(cellPosition))
+        if (!_grassTilemap.HasTile(cellPosition))
         {
-            flowerMap.SetTile(cellPosition, flowerTile);
+            _flowersTilemap.SetTile(cellPosition, flowerTile);
         }
     }
 
@@ -90,23 +93,23 @@ public class Chicken : MonoBehaviour
 
         foreach (var pos in flowerPositions)
         {
-            flowerMap.SetTile(pos, null);
+            _flowersTilemap.SetTile(pos, null);
         }
         yield return new WaitForSeconds(blinkInterval);
 
         foreach (var pos in flowerPositions)
         {
-            flowerMap.SetTile(pos, flowerTile);
+            _flowersTilemap.SetTile(pos, flowerTile);
         }
         yield return new WaitForSeconds(blinkInterval);
 
         foreach (var pos in flowerPositions)
         {
-            flowerMap.SetTile(pos, null);
+            _flowersTilemap.SetTile(pos, null);
         }
         yield return new WaitForSeconds(blinkInterval);
 
-        flowerMap.ClearAllTiles();
+        _flowersTilemap.ClearAllTiles();
 
         chickenMovementScript.ResetPosition();
         ShowChicken();
@@ -149,9 +152,9 @@ public class Chicken : MonoBehaviour
     private List<Vector3Int> GetAllFlowerPositions()
     {
         List<Vector3Int> flowerPositions = new List<Vector3Int>();
-        foreach (var pos in flowerMap.cellBounds.allPositionsWithin)
+        foreach (var pos in _flowersTilemap.cellBounds.allPositionsWithin)
         {
-            if (flowerMap.HasTile(pos))
+            if (_flowersTilemap.HasTile(pos))
             {
                 flowerPositions.Add(pos);
             }

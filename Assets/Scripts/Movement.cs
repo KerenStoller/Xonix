@@ -3,22 +3,29 @@ using UnityEngine.Tilemaps;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private Grid grid;
-    [SerializeField] private Vector3Int startingPosition;
+    [SerializeField] public Grid grid;
+    [SerializeField] public Vector3Int startingPosition;
     [SerializeField] private float timeToMove = 0.35f;
     [SerializeField] private bool isChicken;
-    [SerializeField] private Sprite[] sprites;
+    [SerializeField] public Sprite[] sprites;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private Tilemap grassGrid;
-    
-
+    private Tilemap _grassTilemap;
     private int _currentSpriteIndex;
     public Vector3? CurrentDirection;
     public bool hasDirection;
     private float _moveCountdown;
 
+    private void Awake()
+    {
+        if (!spriteRenderer)
+        {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+    }
+
     void Start()
     {
+        _grassTilemap = grid.transform.Find("Grass").GetComponent<Tilemap>();
         transform.position = grid.GetCellCenterWorld(startingPosition);
     }
     
@@ -41,7 +48,7 @@ public class Movement : MonoBehaviour
 
             if (!isChicken)
             {
-                if (grassGrid.HasTile(newPosition))
+                if (_grassTilemap.HasTile(newPosition))
                 {
                     StopMovement();
                     return;
