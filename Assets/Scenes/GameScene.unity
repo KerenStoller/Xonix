@@ -281,14 +281,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 775500478}
-  grassTilemap: {fileID: 646508327}
-  groundTilemap: {fileID: 1098018616}
   percentageText: {fileID: 1835590500}
   winText: {fileID: 1115633269}
   gameOverPanel: {fileID: 1908102058}
   chicken: {fileID: 1967181646}
   PlayButton: {fileID: 140845365}
-  flowerMap: {fileID: 838277993}
   timeToCheck: 0.35
 --- !u!4 &245276465
 Transform:
@@ -338,7 +335,6 @@ MonoBehaviour:
   grassTile: {fileID: 11400000, guid: cea8d1f708803416cbceca2927c69ecd, type: 2}
   flowerTilemap: {fileID: 838277993}
   groundTilemap: {fileID: 1098018616}
-  cowsWorldPositions: []
 --- !u!4 &253991005
 Transform:
   m_ObjectHideFlags: 0
@@ -5961,7 +5957,7 @@ MonoBehaviour:
   - {fileID: -5922754114360663000, guid: 60a314a6fa3924ea9962df62cec96df4, type: 3}
   - {fileID: 8911921523293518287, guid: 60a314a6fa3924ea9962df62cec96df4, type: 3}
   - {fileID: -2414581210190814732, guid: 60a314a6fa3924ea9962df62cec96df4, type: 3}
-  grassGrid: {fileID: 646508327}
+  cows: []
 --- !u!4 &1723732953
 Transform:
   m_ObjectHideFlags: 0
