@@ -256,8 +256,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 600, y: 150}
+  m_AnchoredPosition: {x: 0, y: -30}
+  m_SizeDelta: {x: 600, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &223332795
 MonoBehaviour:
@@ -2990,7 +2990,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 3
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 17
       m_TileMatrixIndex: 1
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -3031,16 +3031,6 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 30
       m_TileSpriteIndex: 30
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: -3, y: -2, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 20
-      m_TileSpriteIndex: 20
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -3101,6 +3091,16 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 30
       m_TileSpriteIndex: 30
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -2, y: 1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 20
+      m_TileSpriteIndex: 20
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -3200,7 +3200,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 4
-      m_TileSpriteIndex: 4
+      m_TileSpriteIndex: 5
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -3220,7 +3220,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 5
-      m_TileSpriteIndex: 2
+      m_TileSpriteIndex: 4
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -3369,16 +3369,16 @@ Tilemap:
   m_TileSpriteArray:
   - m_RefCount: 2
     m_Data: {fileID: 4338608209347774417, guid: 4df6f9ebe25e9418ea17a075753b992b, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 1522290597, guid: 4bd5c57550c8a4d4791c2580e4715e58, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 6373942132520359487, guid: 4df6f9ebe25e9418ea17a075753b992b, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 226959605, guid: 4bd5c57550c8a4d4791c2580e4715e58, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 1759763201, guid: ed861de5b26b94150970068b1326dc03, type: 3}
   - m_RefCount: 1
@@ -3401,8 +3401,8 @@ Tilemap:
     m_Data: {fileID: -1036979789468306671, guid: 1deb8586a4f2341deaa6d24ca1a2261f, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -7729539223606550471, guid: 1deb8586a4f2341deaa6d24ca1a2261f, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 1522290597, guid: 4bd5c57550c8a4d4791c2580e4715e58, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 1367932263, guid: b8ab5a5516ecd4a2a928a4825fa48609, type: 3}
   - m_RefCount: 1
@@ -3583,10 +3583,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1768563345}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1290095816
 MonoBehaviour:
@@ -3610,7 +3610,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 40
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
@@ -5212,8 +5212,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -72}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 0, y: -95}
+  m_SizeDelta: {x: 230, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1768563346
 MonoBehaviour:
@@ -5236,11 +5236,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.3882353, g: 0.4117647, b: 0.38431373, a: 1}
-    m_HighlightedColor: {r: 0.4509804, g: 0.63529414, b: 0.32156864, a: 1}
-    m_PressedColor: {r: 0.5764706, g: 0.69411767, b: 0.3529412, a: 1}
-    m_SelectedColor: {r: 0.6509804, g: 0.7607843, b: 0.38431373, a: 1}
-    m_DisabledColor: {r: 0.54509807, g: 0.69411767, b: 0.3529412, a: 1}
+    m_NormalColor: {r: 0.46666667, g: 0.6313726, b: 0.34117648, a: 1}
+    m_HighlightedColor: {r: 0.7490196, g: 0.83137256, b: 0.43529412, a: 1}
+    m_PressedColor: {r: 0.7490196, g: 0.83137256, b: 0.43529412, a: 1}
+    m_SelectedColor: {r: 0.7490196, g: 0.83137256, b: 0.43529412, a: 1}
+    m_DisabledColor: {r: 0.7490196, g: 0.83137256, b: 0.43529412, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:

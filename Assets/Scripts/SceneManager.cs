@@ -6,4 +6,9 @@ public class SceneManager : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
     }
+    
+    public void OpenWelcomeScene()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("WelcomeScene");
+    }
 }

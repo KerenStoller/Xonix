@@ -9,17 +9,27 @@ public class SceneLoader : MonoBehaviour
     [SerializeField] private GameObject WonText;
     [SerializeField] private GameObject LostText;
     [SerializeField] private GameObject PlayAgainButton;
+    [SerializeField] private GameObject MenuButton;
     
     
     void Start()
     {
         PlayAgainButton.SetActive(true);
-        if (gameResult.ChickWon)
+        MenuButton.SetActive(true);
+        
+        if (gameResult.WhoWon == "")
+        {
+            WonGrid.SetActive(false);
+            WonText.SetActive(false);
+            LostGrid.SetActive(false);
+            LostText.SetActive(false);
+        }
+        if (gameResult.WhoWon == "Chick")
         {
             WonGrid.SetActive(true);
             WonText.SetActive(true);
             LostGrid.SetActive(false);
-            LostGrid.SetActive(false);
+            LostText.SetActive(false);
         }
         else
         {

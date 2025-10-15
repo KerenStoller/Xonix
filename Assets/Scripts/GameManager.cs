@@ -12,16 +12,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text percentageText;
     [SerializeField] private GameObject lifePrefab;
     [SerializeField] private Transform livesContainer;
+    
     private List<GameObject> _lives = new List<GameObject>();
-    
     public GameResult gameResult;
-    
     private Tilemap _grassTilemap;
     private Tilemap _groundTilemap;
-
-    private const int ChickenMaxLives = 3;
-    private int _chickenCurrentLives;
+    
+    [SerializeField] private float grassThreshold = 0.7f; // percentage needed to win
+    [SerializeField] private int chickenMaxLives = 3;
     [SerializeField] private float timeToCheck = 0.35f;
+    
+    private int _chickenCurrentLives;
     private float _moveCountdown;
     private bool _won;
 
@@ -40,7 +41,7 @@ public class GameManager : MonoBehaviour
     
     private void Start()
     {
-        _chickenCurrentLives = ChickenMaxLives;
+        _chickenCurrentLives = chickenMaxLives;
         InitializeLives(_chickenCurrentLives);
         percentageText.text = "0%";
     }
@@ -76,8 +77,8 @@ public class GameManager : MonoBehaviour
                 }
                 if (_won)
                 {
-                    gameResult.ChickWon = true;
-                    UnityEngine.SceneManagement.SceneManager.LoadScene("WonOrLost");
+                    gameResult.WhoWon = "Chick";
+                    UnityEngine.SceneManagement.SceneManager.LoadScene("WonOrLost", LoadSceneMode.Single);
                 }
             }   
         }
@@ -85,7 +86,6 @@ public class GameManager : MonoBehaviour
 
     private void IsGrassCoverageAboveThreshold()
     {
-        float threshold = 0.75f;
         int grassCount = 0;
         int totalCount = 0;
         BoundsInt bounds = _groundTilemap.cellBounds;
@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
         
         float coverage = (float)grassCount / totalCount;
         percentageText.text = $"{coverage * 100:0}%";
-        _won = coverage >= threshold;
+        _won = coverage >= grassThreshold;
     }
     
     public void SetLives(int currentLives)
@@ -115,8 +115,8 @@ public class GameManager : MonoBehaviour
         _chickenCurrentLives--;
         if (_chickenCurrentLives <= 0)
         {
-            gameResult.ChickWon = false;
-            UnityEngine.SceneManagement.SceneManager.LoadScene("WonOrLost");
+            gameResult.WhoWon = "Cows";
+            UnityEngine.SceneManagement.SceneManager.LoadScene("WonOrLost", LoadSceneMode.Single);
         }
         else
         {

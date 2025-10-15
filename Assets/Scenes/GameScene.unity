@@ -153,6 +153,8 @@ MonoBehaviour:
   lifePrefab: {fileID: 2129783136671901606, guid: 33b7078f2c0b24ee1bbf88f35df319b5, type: 3}
   livesContainer: {fileID: 952828174}
   gameResult: {fileID: 11400000, guid: c1ba63186917849519e3fe6bc91eaa1a, type: 2}
+  grassThreshold: 0.7
+  chickenMaxLives: 3
   timeToCheck: 0.35
 --- !u!4 &245276465
 Transform:
