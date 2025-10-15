@@ -11,7 +11,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text percentageText;
     [SerializeField] private Text winText;
     [SerializeField] private Text lostText;
-    [SerializeField] private Text livesText;
+    [SerializeField] private GameObject lifePrefab;
+    [SerializeField] private Transform livesContainer;
+    private List<GameObject> _lives = new List<GameObject>();
+    
     
     private Tilemap _grassTilemap;
     private Tilemap _groundTilemap;
@@ -38,8 +41,24 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _chickenCurrentLives = ChickenMaxLives;
-        livesText.text = _chickenCurrentLives.ToString();
+        InitializeLives(_chickenCurrentLives);
         percentageText.text = "0%";
+    }
+    
+    public void InitializeLives(int lives)
+    {
+        // Destroy extra hearts
+        while (_lives.Count > lives)
+        {
+            Destroy(_lives[_lives.Count - 1]);
+            _lives.RemoveAt(_lives.Count - 1);
+        }
+        // Add needed _lives
+        while (_lives.Count < lives)
+        {
+            var life = Instantiate(lifePrefab, livesContainer);
+            _lives.Add(life);
+        }
     }
     
     void Update()
@@ -83,16 +102,27 @@ public class GameManager : MonoBehaviour
         _won = coverage >= threshold;
     }
     
+    public void SetLives(int currentLives)
+    {
+        for (int i = 0; i < _lives.Count; i++)
+        {
+            _lives[i].SetActive(i < currentLives);
+        }
+    }
+    
     public void RemoveLife()
     {
         _chickenCurrentLives--;
-        livesText.text = _chickenCurrentLives.ToString();
         Debug.Log($"Chicken lost a life, remaining lives: {_chickenCurrentLives}");
         if (_chickenCurrentLives <= 0 )
         {
-            livesText.gameObject.SetActive(false);
+            SetLives(0);
             lostText.gameObject.SetActive(true);
-            //Chicken.Instance.transform.gameObject.SetActive(false);
+            //TODO: maybe call chicken and tell him to cry
+        }
+        else
+        {
+            SetLives(_chickenCurrentLives);
         }
     }
 }
