@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Grid grid;
     [SerializeField] private Text percentageText;
     [SerializeField] private Text winText;
+    [SerializeField] private Text lostText;
     [SerializeField] private Text livesText;
     
     private Tilemap _grassTilemap;
@@ -89,7 +90,9 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Chicken lost a life, remaining lives: {_chickenCurrentLives}");
         if (_chickenCurrentLives <= 0 )
         {
-            // game is over
+            livesText.gameObject.SetActive(false);
+            lostText.gameObject.SetActive(true);
+            //Chicken.Instance.transform.gameObject.SetActive(false);
         }
     }
 }
