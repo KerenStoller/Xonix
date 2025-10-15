@@ -22,7 +22,8 @@ public class CowController : MonoBehaviour
     {
         if (!cowMovementScript.hasDirection)
         {
-            foreach (var dir in _directions)
+            var randomizedDirections = GetRandomizedDirections();
+            foreach (var dir in randomizedDirections)
             {
                 cowMovementScript.CurrentDirection = dir;
                 cowMovementScript.hasDirection = true;
@@ -32,7 +33,6 @@ public class CowController : MonoBehaviour
                     break;
                 }
             }
-            
             // If no valid direction found, do nothing this frame
             return;
         }
@@ -43,6 +43,17 @@ public class CowController : MonoBehaviour
             _moveCountdown = 0;
             MoveRandom();
         }
+    }
+
+    private Vector3Int[] GetRandomizedDirections()
+    {
+        var directions = (Vector3Int[])_directions.Clone();
+        for (int i = directions.Length - 1; i > 0; i--)
+        {
+            int rnd = Random.Range(0, i + 1);
+            (directions[i], directions[rnd]) = (directions[rnd], directions[i]);
+        }
+        return directions;
     }
 
     void MoveRandom()
