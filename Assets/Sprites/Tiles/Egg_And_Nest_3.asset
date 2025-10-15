@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: Egg_And_Nest_3
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -744197992327247199, guid: 4d55388345d2d4f4c889620884186b8c, type: 3}
+  m_Sprite: {fileID: -744197992327247199, guid: 4df6f9ebe25e9418ea17a075753b992b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
