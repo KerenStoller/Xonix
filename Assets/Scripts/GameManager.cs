@@ -113,7 +113,6 @@ public class GameManager : MonoBehaviour
     public void RemoveLife()
     {
         _chickenCurrentLives--;
-        Debug.Log($"Chicken lost a life, remaining lives: {_chickenCurrentLives}");
         if (_chickenCurrentLives <= 0 )
         {
             SetLives(0);
