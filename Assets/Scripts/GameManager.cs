@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,12 +10,11 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] private Grid grid;
     [SerializeField] private Text percentageText;
-    [SerializeField] private Text winText;
-    [SerializeField] private Text lostText;
     [SerializeField] private GameObject lifePrefab;
     [SerializeField] private Transform livesContainer;
     private List<GameObject> _lives = new List<GameObject>();
     
+    public GameResult gameResult;
     
     private Tilemap _grassTilemap;
     private Tilemap _groundTilemap;
@@ -76,8 +76,8 @@ public class GameManager : MonoBehaviour
                 }
                 if (_won)
                 {
-                    winText.gameObject.SetActive(true);
-                    Chicken.Instance.transform.gameObject.SetActive(false);
+                    gameResult.ChickWon = true;
+                    UnityEngine.SceneManagement.SceneManager.LoadScene("WonOrLost");
                 }
             }   
         }
@@ -113,11 +113,10 @@ public class GameManager : MonoBehaviour
     public void RemoveLife()
     {
         _chickenCurrentLives--;
-        if (_chickenCurrentLives <= 0 )
+        if (_chickenCurrentLives <= 0)
         {
-            SetLives(0);
-            lostText.gameObject.SetActive(true);
-            //TODO: maybe call chicken and tell him to cry
+            gameResult.ChickWon = false;
+            UnityEngine.SceneManagement.SceneManager.LoadScene("WonOrLost");
         }
         else
         {

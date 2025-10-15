@@ -3643,7 +3643,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!156049354 &515071765
 Grid:
   m_ObjectHideFlags: 0
@@ -4884,7 +4884,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1283578723
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9124,7 +9124,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1775966688
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9386,6 +9386,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2034095588}
   - component: {fileID: 2034095589}
+  - component: {fileID: 2034095590}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -9420,6 +9421,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfdb7ac2fda6b429f9385e62b706a164, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2034095590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034095587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0034c8186e73a4b5a96fdb24a0aaf0aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameResult: {fileID: 11400000, guid: c1ba63186917849519e3fe6bc91eaa1a, type: 2}
+  WonGrid: {fileID: 0}
+  LostGrid: {fileID: 0}
+  WonText: {fileID: 0}
+  LostText: {fileID: 0}
 --- !u!1 &2047902445
 GameObject:
   m_ObjectHideFlags: 0
