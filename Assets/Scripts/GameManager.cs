@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
                 if (_won)
                 {
                     gameResult.WhoWon = "Chick";
-                    UnityEngine.SceneManagement.SceneManager.LoadScene("WonOrLost", LoadSceneMode.Single);
+                    UnityEngine.SceneManagement.SceneManager.LoadScene("WonOrLost");
                 }
             }   
         }
@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
         {
             
             gameResult.WhoWon = "Cows";
-            UnityEngine.SceneManagement.SceneManager.LoadScene("WonOrLost", LoadSceneMode.Single);
+            UnityEngine.SceneManagement.SceneManager.LoadScene("WonOrLost");
         }
         else
         {
