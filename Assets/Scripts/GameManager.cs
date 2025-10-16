@@ -115,6 +115,7 @@ public class GameManager : MonoBehaviour
         _chickenCurrentLives--;
         if (_chickenCurrentLives <= 0)
         {
+            
             gameResult.WhoWon = "Cows";
             UnityEngine.SceneManagement.SceneManager.LoadScene("WonOrLost", LoadSceneMode.Single);
         }

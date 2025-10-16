@@ -22,20 +22,34 @@ public class CowManager : MonoBehaviour
         }
         Instance = this;
     }
-    
+
     void Start()
     {
         for (int i = 0; i < numberOfCows; i++)
         {
-            cowPrefab = Instantiate(cowPrefab, transform);
-            var cowMovement = cowPrefab.GetComponent<Movement>();
+            GameObject cow = CowPool.Instance.GetCow();
+            cow.transform.SetParent(transform); // Assign parent for hierarchy organization
+            // Set up cow's starting properties
+            var cowMovement = cow.GetComponent<Movement>();
             cowMovement.startingPosition = new Vector3Int(
                 Random.Range(-5, 5),
                 Random.Range(-5, 5), 0
             );
             cowMovement.grid = grid;
             cowMovement.sprites = sprites;
-            cows.Add(cowPrefab);
+            cow.SetActive(true); // Make sure it's enabled when retrieved
+            cows.Add(cow);
         }
+
     }
+    
+    public void ReturnAllCowsToPool()
+{
+    foreach (var cow in cows)
+    {
+        CowPool.Instance.ReturnCow(cow);
+    }
+    cows.Clear();
+}
+
 }
