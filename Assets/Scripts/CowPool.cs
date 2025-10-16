@@ -4,21 +4,26 @@ using UnityEngine;
 public class CowPool : MonoBehaviour
 {
     public static CowPool Instance;
+    
     public GameObject cowPrefab;
     public int poolSize = 3;
     private List<GameObject> _pool;
 
     private void Awake()
     {
-        if (Instance && Instance != this) { Destroy(gameObject); return; }
+        if (Instance && Instance != this)
+        {
+            Destroy(gameObject); 
+            return;
+        }
         Instance = this;
 
         _pool = new List<GameObject>();
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject obj = Instantiate(cowPrefab);
-            obj.SetActive(false);
-            _pool.Add(obj);
+            GameObject cow = Instantiate(cowPrefab);
+            cow.SetActive(false);
+            _pool.Add(cow);
         }
     }
 
@@ -32,11 +37,12 @@ public class CowPool : MonoBehaviour
                 return cow;
             }
         }
+        
         // Expand _pool if needed (optional)
-        GameObject obj = Instantiate(cowPrefab);
-        obj.SetActive(true);
-        _pool.Add(obj);
-        return obj;
+        GameObject newCow = Instantiate(cowPrefab);
+        newCow.SetActive(true);
+        _pool.Add(newCow);
+        return newCow;
     }
 
     public void ReturnCow(GameObject cow)

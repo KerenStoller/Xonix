@@ -52,9 +52,11 @@ public class GrassFillScript : MonoBehaviour
         {
             if (!Utils.OutOfBounds(adjacentCell))
             {
+                // Only start a search if the adjacent cell is ground and not already grass
                 if (groundTilemap.HasTile(adjacentCell) &&
                     !grassTilemap.HasTile(adjacentCell))
                 {
+                    // Clear the list to only contain the current adjacent cell
                     potentialGrass.Clear();
                     potentialGrass.Add(adjacentCell);
                     if (!FindCows(adjacentCell, potentialGrass))

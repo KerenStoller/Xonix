@@ -27,15 +27,15 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        _grassTilemap = grid.transform.Find("Grass").GetComponent<Tilemap>();
-        _groundTilemap = grid.transform.Find("Ground").GetComponent<Tilemap>();
-        
         if (Instance && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
         Instance = this;
+        
+        _grassTilemap = grid.transform.Find("Grass").GetComponent<Tilemap>();
+        _groundTilemap = grid.transform.Find("Ground").GetComponent<Tilemap>();
     }
     
     private void Start()
@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour
                 }
                 if (_won)
                 {
+                    CowManager.Instance.ReturnAllCowsToPool();
                     gameResult.whoWon = "Chick";
                     UnityEngine.SceneManagement.SceneManager.LoadScene("WonOrLost");
                 }
@@ -114,7 +115,7 @@ public class GameManager : MonoBehaviour
         _chickenCurrentLives--;
         if (_chickenCurrentLives <= 0)
         {
-            
+            CowManager.Instance.ReturnAllCowsToPool();
             gameResult.whoWon = "Cows";
             UnityEngine.SceneManagement.SceneManager.LoadScene("WonOrLost");
         }

@@ -149,12 +149,4 @@ public class Chicken : MonoBehaviour
         chickenMovementScript.StopMovement();
         StartCoroutine(BlinkFlowersAndRemove(0.2f));
     }
-    
-    public void ResetState()
-    {
-        _justDied = false;
-        chickenMovementScript.ResetPosition();
-        chickenCollider.enabled = true;
-        chickenSpriteRenderer.enabled = true;
-    }
 }

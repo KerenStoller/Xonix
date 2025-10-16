@@ -40,16 +40,14 @@ public class CowManager : MonoBehaviour
             cow.SetActive(true); // Make sure it's enabled when retrieved
             cows.Add(cow);
         }
-
     }
     
     public void ReturnAllCowsToPool()
-{
-    foreach (var cow in cows)
     {
-        CowPool.Instance.ReturnCow(cow);
+        foreach (var cow in cows)
+        {
+            CowPool.Instance.ReturnCow(cow);
+        }
+        cows.Clear();
     }
-    cows.Clear();
-}
-
 }
