@@ -1,42 +1,41 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SceneLoader : MonoBehaviour
 {
     public GameResult gameResult;
-    [SerializeField] private GameObject WonGrid;
-    [SerializeField] private GameObject LostGrid;
-    [SerializeField] private GameObject WonText;
-    [SerializeField] private GameObject LostText;
-    [SerializeField] private GameObject PlayAgainButton;
-    [SerializeField] private GameObject MenuButton;
+    [SerializeField] private GameObject wonGrid;
+    [SerializeField] private GameObject lostGrid;
+    [SerializeField] private GameObject wonText;
+    [SerializeField] private GameObject lostText;
+    [SerializeField] private GameObject playAgainButton;
+    [SerializeField] private GameObject menuButton;
     
     
-    void Start()
+    private void Start()
     {
-        PlayAgainButton.SetActive(true);
-        MenuButton.SetActive(true);
+        playAgainButton.SetActive(true);
+        menuButton.SetActive(true);
         
-        if (gameResult.WhoWon == "")
+        if (gameResult.whoWon == "")
         {
-            WonGrid.SetActive(false);
-            WonText.SetActive(false);
-            LostGrid.SetActive(false);
-            LostText.SetActive(false);
+            wonGrid.SetActive(false);
+            wonText.SetActive(false);
+            lostGrid.SetActive(false);
+            lostText.SetActive(false);
         }
-        if (gameResult.WhoWon == "Chick")
+        if (gameResult.whoWon == "Chick")
         {
-            WonGrid.SetActive(true);
-            WonText.SetActive(true);
-            LostGrid.SetActive(false);
-            LostText.SetActive(false);
+            wonGrid.SetActive(true);
+            wonText.SetActive(true);
+            lostGrid.SetActive(false);
+            lostText.SetActive(false);
         }
         else
         {
-            WonGrid.SetActive(false);
-            WonText.SetActive(false);
-            LostGrid.SetActive(true);
-            LostText.SetActive(true);
+            wonGrid.SetActive(false);
+            wonText.SetActive(false);
+            lostGrid.SetActive(true);
+            lostText.SetActive(true);
         }
     }
 }

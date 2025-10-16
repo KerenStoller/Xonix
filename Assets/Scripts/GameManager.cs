@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,7 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject lifePrefab;
     [SerializeField] private Transform livesContainer;
     
-    private List<GameObject> _lives = new List<GameObject>();
+    private readonly List<GameObject> _lives = new List<GameObject>();
     public GameResult gameResult;
     private Tilemap _grassTilemap;
     private Tilemap _groundTilemap;
@@ -46,7 +45,7 @@ public class GameManager : MonoBehaviour
         percentageText.text = "0%";
     }
     
-    public void InitializeLives(int lives)
+    private void InitializeLives(int lives)
     {
         // Destroy extra hearts
         while (_lives.Count > lives)
@@ -77,7 +76,7 @@ public class GameManager : MonoBehaviour
                 }
                 if (_won)
                 {
-                    gameResult.WhoWon = "Chick";
+                    gameResult.whoWon = "Chick";
                     UnityEngine.SceneManagement.SceneManager.LoadScene("WonOrLost");
                 }
             }   
@@ -102,7 +101,7 @@ public class GameManager : MonoBehaviour
         _won = coverage >= grassThreshold;
     }
     
-    public void SetLives(int currentLives)
+    private void SetLives(int currentLives)
     {
         for (int i = 0; i < _lives.Count; i++)
         {
@@ -116,7 +115,7 @@ public class GameManager : MonoBehaviour
         if (_chickenCurrentLives <= 0)
         {
             
-            gameResult.WhoWon = "Cows";
+            gameResult.whoWon = "Cows";
             UnityEngine.SceneManagement.SceneManager.LoadScene("WonOrLost");
         }
         else

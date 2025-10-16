@@ -9,6 +9,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private bool isChicken;
     [SerializeField] public Sprite[] sprites;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    
     private Tilemap _grassTilemap;
     private int _currentSpriteIndex;
     public Vector3? CurrentDirection;
@@ -23,13 +24,13 @@ public class Movement : MonoBehaviour
         }
     }
 
-    void Start()
+    private void Start()
     {
         _grassTilemap = grid.transform.Find("Grass").GetComponent<Tilemap>();
         transform.position = grid.GetCellCenterWorld(startingPosition);
     }
     
-    void Update()
+    private void Update()
     {
         _moveCountdown += Time.deltaTime;
 

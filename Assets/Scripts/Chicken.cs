@@ -12,6 +12,7 @@ public class Chicken : MonoBehaviour
     [SerializeField] private Grid grid;
     [SerializeField] private Movement chickenMovementScript;
     [SerializeField] private Tile flowerTile;
+    
     private Tilemap _grassTilemap;
     private Tilemap _flowersTilemap;
     private bool _justDied;
