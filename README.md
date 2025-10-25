@@ -1,8 +1,12 @@
-# The Revenge Of The Chick - Setup Guide
+# The Revenge of the Chick 🐥✨
 
-Welcome! 
+Welcome to **The Revenge of the Chick** - a Star Wars inspired Xonix-style adventure where the fearless chicken battles the moo forces!  
+- **Victory:** The Chick strikes again! 🐥⚡  
+- **Defeat:** The Moo side grows stronger… 🐄💀
+
+---
+
 This Unity project includes **three scenes** that work together to run the game:
-
 - **`WelcomeScene`** — the main menu  
 - **`GameScene`** — where gameplay happens  
 - **`WonOrLostScene`** — shows whether you win or lose  
@@ -36,9 +40,14 @@ Leave **only** `WelcomeScene` loaded.
 ## You’re Ready!
 Your scene setup should look like this:
 
+```
 Scenes In Hierarchy
 ├── WelcomeScene (Loaded)
 ├── GameScene (Unloaded)
 └── WonOrLostScene (Unloaded)
+```
 
-Now you’re ready to **press Play** and enjoy the game! 
+---
+
+### You’re Ready! 
+Press **Play** and help the Chick strike back against the Moo forces! May the feathers be with you 🐥✨
