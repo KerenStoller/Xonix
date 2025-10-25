@@ -41,7 +41,6 @@ Leave **only** `WelcomeScene` loaded.
 Your scene setup should look like this:
 
 ```
-Scenes In Hierarchy
 ├── WelcomeScene (Loaded)
 ├── GameScene (Unloaded)
 └── WonOrLostScene (Unloaded)
