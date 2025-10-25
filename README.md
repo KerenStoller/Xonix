@@ -1,6 +1,6 @@
-# 🕹️ Unity Mini Game Setup Guide
+# The Revenge Of The Chick - Setup Guide
 
-Welcome! 👋  
+Welcome! 
 This Unity project includes **three scenes** that work together to run the game:
 
 - **`WelcomeScene`** — the main menu  
@@ -11,7 +11,7 @@ Before pressing **Play**, make sure the scenes are set up correctly so everythin
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Open the Project
 Open the project in **Unity**.
@@ -33,7 +33,7 @@ Leave **only** `WelcomeScene` loaded.
 
 ---
 
-## ✅ You’re Ready!
+## You’re Ready!
 Your scene setup should look like this:
 
 Scenes In Hierarchy
@@ -41,4 +41,4 @@ Scenes In Hierarchy
 ├── GameScene (Unloaded)
 └── WonOrLostScene (Unloaded)
 
-Now you’re ready to **press Play** and enjoy the game! 🎮
+Now you’re ready to **press Play** and enjoy the game! 
