@@ -4,11 +4,6 @@ Welcome to **The Revenge of the Chick** - a Star Wars inspired Xonix-style adven
 
 https://github.com/user-attachments/assets/463ea2a8-a255-4cb5-abe5-2f9951ea9aa4
 
-<video src="https://github.com/user-attachments/assets/463ea2a8-a255-4cb5-abe5-2f9951ea9aa4" width="200" controls></video>
-
-| Gameplay Preview |
-| :---: |
-| https://github.com/user-attachments/assets/463ea2a8-a255-4cb5-abe5-2f9951ea9aa4 |
 
 - **Victory:** The Chick strikes again! 🐥⚡  
 - **Defeat:** The Moo side grows stronger… 🐄💀
@@ -61,19 +56,9 @@ Press **Play** and help the Chick strike back against the Moo forces! May the fe
 
 ---
 
-### Gameplay Preview
-
-**The Taste of Victory:**
-
-
-https://github.com/user-attachments/assets/db3b5db5-ce3f-4cf8-98c6-b772fafcc6e9
-
-
-
 ### Win & Loss States
 
 Here is what awaits you at the end of your journey:
-
-| **You Won!** 🟢 | **You Lost...** 🔴 |
+| **Win** | **Lose** |
 | :---: | :---: |
 | <img src="https://github.com/KerenStoller/Xonix/blob/master/assets/Won%20screen.png" width="100%"> | <img src="https://github.com/KerenStoller/Xonix/blob/master/assets/lost%20screen.png" width="100%"> |
