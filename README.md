@@ -4,7 +4,7 @@ Welcome to **The Revenge of the Chick** - a Star Wars inspired Xonix-style adven
 
 https://github.com/user-attachments/assets/463ea2a8-a255-4cb5-abe5-2f9951ea9aa4
 
-<video src="https://github.com/user-attachments/assets/463ea2a8-a255-4cb5-abe5-2f9951ea9aa4" width="600" controls></video>
+<video src="https://github.com/user-attachments/assets/463ea2a8-a255-4cb5-abe5-2f9951ea9aa4" width="200" controls></video>
 
 | Gameplay Preview |
 | :---: |
