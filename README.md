@@ -2,7 +2,8 @@
 
 Welcome to **The Revenge of the Chick** - a Star Wars inspired Xonix-style adventure where the fearless chicken battles the moo forces!
 
-https://github.com/user-attachments/assets/463ea2a8-a255-4cb5-abe5-2f9951ea9aa4
+
+https://github.com/user-attachments/assets/5a9d70c7-4bba-492b-82f8-26dc6b092696
 
 
 - **Victory:** The Chick strikes again! 🐥⚡  
