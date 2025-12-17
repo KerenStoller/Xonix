@@ -40,7 +40,6 @@ Leave **only** `WelcomeScene` loaded.
 
 ---
 
-## You’re Ready!
 Your scene setup should look like this:
 
 ```
