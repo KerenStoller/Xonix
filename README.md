@@ -67,8 +67,6 @@ https://github.com/user-attachments/assets/db3b5db5-ce3f-4cf8-98c6-b772fafcc6e9
 
 
 ### Win & Loss States
-Here is what awaits you at the end of your journey:
 
-| **You Won!** 🟢 | **You Lost...** 🔴 |
 | :---: | :---: |
 | <img src="https://github.com/KerenStoller/Xonix/blob/master/assets/Won%20screen.png" width="100%"> | <img src="https://github.com/KerenStoller/Xonix/blob/master/assets/lost%20screen.png" width="100%"> |
