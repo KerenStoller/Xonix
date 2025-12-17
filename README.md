@@ -2,7 +2,9 @@
 
 Welcome to **The Revenge of the Chick** - a Star Wars inspired Xonix-style adventure where the fearless chicken battles the moo forces!
 
-https://github.com/KerenStoller/Xonix/blob/master/assets/starting%20video%20copy.mov
+
+https://github.com/user-attachments/assets/463ea2a8-a255-4cb5-abe5-2f9951ea9aa4
+
 
 - **Victory:** The Chick strikes again! 🐥⚡  
 - **Defeat:** The Moo side grows stronger… 🐄💀
@@ -58,7 +60,11 @@ Press **Play** and help the Chick strike back against the Moo forces! May the fe
 ### Gameplay Preview
 
 **The Taste of Victory:**
-https://github.com/KerenStoller/Xonix/blob/master/assets/winning%20video%20copy.mov
+
+
+https://github.com/user-attachments/assets/db3b5db5-ce3f-4cf8-98c6-b772fafcc6e9
+
+
 
 ### Win & Loss States
 Here is what awaits you at the end of your journey:
